@@ -2,6 +2,8 @@
 ---------
 Python h264 RTP package inspector and analyzer.
 
+![operation](docs/operation.svg)
+
 ### Usage:
 - Step 0: Restore python virtual environment using pipenv
   
@@ -10,12 +12,16 @@ Python h264 RTP package inspector and analyzer.
     pipenv sync
     ```
 
-- Step 1: dump rtp packets using gstreamer:
+- Step 1: dump rtp packets
+    - Using wireshark to filter and export rtpdump file.
+        - [rtpdump format](http://web4.cs.columbia.edu/irt/software/rtptools/)
+
+    - Or, using gstreamer to dump rtp packets. 
 
     ```
     gst-launch-1.0 -e -v rtspsrc location=rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov debug=1 medias=0 ! multifilesink location=/tmp/rtp/%06d.dat
     ```
-- Step 2: analyse dumped rtp packets
+- Step 2: analyse dumped rtp packets or rtpdump file.
     
     ```
     pipenv run python test/test_rtp.py /tmp/rtp/*.dat |sort -n -k 8
