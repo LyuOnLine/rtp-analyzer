@@ -24,6 +24,9 @@ Python h264 RTP package inspector and analyzer.
 - Step 2: analyse dumped rtp packets or rtpdump file.
     
     ```
+    # for rtpdump file
+    pipenv run python test/test_rtp.py /tmp/rtp.rtpdump
+    # for multiple rtp packets
     pipenv run python test/test_rtp.py /tmp/rtp/*.dat |sort -n -k 8
     ```
 
